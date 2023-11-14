@@ -43,7 +43,5 @@ public class KeycloakJwtTokenConverter implements  Converter<Jwt, Collection<Gra
         }catch(Exception e){
             return new LinkedList<>();
         }
-
-
     }
 }
