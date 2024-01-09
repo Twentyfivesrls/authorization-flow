@@ -34,7 +34,7 @@ public class SecurityConfiguration {
                 properties);
     }
 
-    @Bean
+    /*@Bean
     Keycloak keycloak() {
         return KeycloakBuilder.builder()
                 .serverUrl("http://80.211.123.167:8899")
@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 .username("admin")
                 .password("TwentyPw1!")
                 .build();
-    }
+    }*/
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
