@@ -12,8 +12,14 @@ public class AuthenticationService {
         try {
             System.out.println("sono nel try");
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            System.out.println("STAMPO LA REQUEST  :" + request);
+
             String token = request.getHeader("Authorization").split(" ")[1];
+            System.out.println("STAMPO IL TOKEN  :" + token);
+
             String result = JwtUtils.getNameFromJwt(token);
+            System.out.println("STAMPO IL RESULT  :" + result);
+
             return result;
         }catch(Exception e){
             System.out.println("sono nel catch");
