@@ -30,39 +30,24 @@ public class KeycloakJwtTokenConverter implements  Converter<Jwt, Collection<Gra
     @Override
     public Collection<GrantedAuthority> convert(@NonNull Jwt jwt) {
         LinkedList result = new LinkedList<>();
-
         try {
             try {
                 Map<String, Object> resourceAccess = jwt.getClaimAsMap(RESOURCE_ACCESS);
                 Map<String, Object> clientIdMap = (Map<String, Object>) resourceAccess.get(properties.getResourceId());
-                System.out.println("resourceAccess   :"+ resourceAccess + "clientIdMap  :" + clientIdMap);
                 List<String> roles = (List<String>) clientIdMap.get(ROLES);
-                System.out.println("roles  :" + roles);
                 Collection<GrantedAuthority> resourceRoles = roles.stream().map(role -> new SimpleGrantedAuthority(ROLE_PREFIX + role)).collect(Collectors.toList());
-                System.out.println("resourceRoles  :" + resourceRoles);
                 result.addAll(resourceRoles);
-                System.out.println("result  :" + result);
-
             }catch(Exception e){
 
             }
             try {
                 Map<String, Object> realmAccess = jwt.getClaimAsMap(REALM_ACCESS);
-                System.out.println("realmAccess   :" + realmAccess);
                 List<String> realmRoles = (List<String>) realmAccess.get(ROLES);
-                System.out.println("realmRoles  :" + realmRoles);
                 Collection<GrantedAuthority> realmAuthorities = realmRoles.stream().map(role -> new SimpleGrantedAuthority(ROLE_PREFIX + role)).collect(Collectors.toList());
-                System.out.println("realmAuthorities  :" + realmAuthorities);
                 result.addAll(realmAuthorities);
-                System.out.println("result  :" + result);
-            }catch(Exception e){
-
-            }
-
+            }catch(Exception e){}
             return result;
-
         }catch(Exception e){
-            //return new LinkedList<>();
             return result;
         }
     }
