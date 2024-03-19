@@ -13,6 +13,7 @@ public class JwtUtils {
             String username = decoded.getClaim("preferred_username").asString();
             return username;
         }catch(Exception e){
+            e.printStackTrace();
             return "";
         }
     }
@@ -22,6 +23,7 @@ public class JwtUtils {
             String userId = decoded.getClaim("sub").asString();
             return userId;
         }catch(Exception e){
+            e.printStackTrace();
             return "";
         }
     }
@@ -32,6 +34,7 @@ public class JwtUtils {
             Map realm_access = decoded.getClaim("realm_access").asMap();
             return realm_access;
         }catch(Exception e){
+            e.printStackTrace();
             return new HashMap();
         }
     }
@@ -42,6 +45,7 @@ public class JwtUtils {
             Map resource_access = decoded.getClaim("resource_access").asMap();
             return resource_access;
         }catch(Exception e){
+            e.printStackTrace();
             return new HashMap();
         }
     }

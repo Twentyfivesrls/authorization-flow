@@ -38,16 +38,19 @@ public class KeycloakJwtTokenConverter implements  Converter<Jwt, Collection<Gra
                 Collection<GrantedAuthority> resourceRoles = roles.stream().map(role -> new SimpleGrantedAuthority(ROLE_PREFIX + role)).collect(Collectors.toList());
                 result.addAll(resourceRoles);
             }catch(Exception e){
-
+                e.printStackTrace();
             }
             try {
                 Map<String, Object> realmAccess = jwt.getClaimAsMap(REALM_ACCESS);
                 List<String> realmRoles = (List<String>) realmAccess.get(ROLES);
                 Collection<GrantedAuthority> realmAuthorities = realmRoles.stream().map(role -> new SimpleGrantedAuthority(ROLE_PREFIX + role)).collect(Collectors.toList());
                 result.addAll(realmAuthorities);
-            }catch(Exception e){}
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             return result;
         }catch(Exception e){
+            e.printStackTrace();
             return result;
         }
     }

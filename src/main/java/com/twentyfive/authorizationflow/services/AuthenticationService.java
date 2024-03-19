@@ -18,6 +18,7 @@ public class AuthenticationService {
             String result = JwtUtils.getNameFromJwt(token);
             return result;
         }catch(Exception e){
+            e.printStackTrace();
             return "Guest";
         }
     }
@@ -38,6 +39,7 @@ public class AuthenticationService {
             Map result = JwtUtils.getAllRealmRolesFromJwt(token);
             return result;
         } catch (Exception e){
+            e.printStackTrace();
             return new HashMap();
         }
     }
@@ -48,6 +50,7 @@ public class AuthenticationService {
             Map result = JwtUtils.getAllClientRolesFromJwt(token);
             return result;
         } catch (Exception e){
+            e.printStackTrace();
             return new HashMap();
         }
     }
